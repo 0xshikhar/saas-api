@@ -1,17 +1,10 @@
 import { Header } from "@/components/header"
 import { loggedIn } from "@/lib/auth"
-import createCustomer, { hasSubscription, stripe } from "@/lib/stripe"
+import { createCheckoutLink, hasSubscription, createCustomer } from "@/lib/stripe"
 
 export default async function DashboardLayout({ children, }: { children: React.ReactNode }) {
     await loggedIn();
-    await createCustomer();
-
-    // console.log("stripe:", stripe)
-
-    const hasSub = await hasSubscription();
-    console.log(hasSub ? "has" : "has not");
-
-
+    
     return (
         <div className="">
             <Header />
